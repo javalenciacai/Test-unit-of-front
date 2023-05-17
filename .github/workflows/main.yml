@@ -4,25 +4,27 @@ on:
   [push]
   
 
-jobs:  
-  test:
-    name: Test on node ${{ matrix.node_version }} and ${{ matrix.os }}
-    runs-on: ${{ matrix.os }}
-    strategy:
-      matrix:
-        node_version: ['8']
-        os: [ubuntu-latest]
+jobs:
+  # This workflow contains a single job called "build"
+  build:
+    # The type of runner that the job will run on
+    runs-on: ubuntu-latest
 
+    # Steps represent a sequence of tasks that will be executed as part of the job
     steps:
-    - uses: actions/checkout@v1
-    - name: Use Node.js ${{ matrix.node_version }}
-      uses: actions/setup-node@v1
-      with:
-        node-version: ${{ matrix.node_version }}
+      # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
+      - uses: actions/checkout@v3
+      - name: npm install
+        run: |
+          npm install
+          
+      - name: npm install jest and jsdom
+        run: |
+          npm install --save-dev jest
+          npm install jsdom --save-dev
 
-    - name: npm install, build and test
-      run: |
-        npm install
-        npm install --save-dev jest
-        npm install jsdom --save-dev
-        npm test
+      
+      
+      - name: npm test
+        run: |
+          npm test
