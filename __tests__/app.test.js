@@ -15,7 +15,7 @@ describe('prueba de carga de elemento', () => {
   test('el elemento tiene el texto correcto', () => {
     
     const textoElemento = dom.window.document.getElementById('texto');
-    expect(textoElemento.textContent).toBe('Este es el texto que queremos validar que se cargue');
+    expect(textoElemento.textContent).toBe('Este es el texto que queremos validar que se cargue 1');
 
   });
 });
