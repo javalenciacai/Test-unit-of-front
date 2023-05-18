@@ -25,41 +25,4 @@ jobs:
           run: |
             npm test
             
-  test_changes:
-    runs-on: ubuntu-latest
-    if: github.event_name == 'pull_request'
-
-    steps:
-      - name: Checkout del código
-        uses: actions/checkout@v2
-        with:
-          ref: ${{ github.event.pull_request.head.ref }}
-
-      - name: Configurar el entorno
-        run: |
-          npm install
-          npm install --save-dev jest
-          npm install jsdom --save-dev
-
-      - name: Ejecutar pruebas unitarias en la rama de cambios
-        run: |
-          npm test
-
-  pr_checks:
-    needs: test
-    runs-on: ubuntu-latest
-    if: github.event_name == 'pull_request'
-
-    steps:
-      - name: Checkout del código
-        uses: actions/checkout@v2
-        
-      - name: Configurar el entorno
-        run: |
-          npm install
-          npm install --save-dev jest
-          npm install jsdom --save-dev
-
-      - name: Ejecutar pruebas unitarias
-        run: |
-          npm test
+  
