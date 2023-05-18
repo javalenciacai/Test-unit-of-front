@@ -53,6 +53,12 @@ jobs:
     steps:
       - name: Checkout del código
         uses: actions/checkout@v2
+        
+      - name: Configurar el entorno
+        run: |
+          npm install
+          npm install --save-dev jest
+          npm install jsdom --save-dev
 
       - name: Ejecutar pruebas unitarias
         run: |
